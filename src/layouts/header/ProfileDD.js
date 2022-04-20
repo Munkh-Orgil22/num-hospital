@@ -83,7 +83,7 @@ const ProfileDD = () => {
         }}
       >
         <Box>
-          <Box p={2} pt={0}>
+          {/* <Box p={2} pt={0}>
             <List
               component="nav"
               aria-label="secondary mailbox folder"
@@ -102,7 +102,7 @@ const ProfileDD = () => {
                 <ListItemText primary="My Settings" />
               </ListItemButton>
             </List>
-          </Box>
+          </Box> */}
           <Divider />
           <Box p={2}>
             <Link to="/">

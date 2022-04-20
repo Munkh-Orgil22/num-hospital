@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import BlogCard from "../src/components/dashboard/BlogCard";
+// import BlogCard from "../src/components/dashboard/BlogCard";
 import SalesOverview from "../src/components/dashboard/SalseOverview";
 import DailyActivity from "../src/components/dashboard/DailyActivity";
 import UserInfo from "../src/components/dashboard/UserInfo";
@@ -18,7 +18,7 @@ export default function Index() {
         <UserInfo />
       </Grid>
       <Grid item xs={12} lg={12}>
-        <BlogCard />
+        {/* <BlogCard /> */}
       </Grid>
     </Grid>
   );
