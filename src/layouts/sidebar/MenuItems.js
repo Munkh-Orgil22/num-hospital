@@ -10,9 +10,14 @@ const Menuitems = [
     href: "/buttons",
   },
   {
-    title: "Forms",
+    title: "Хэрэглэгч бүртгэх",
     icon: "layout",
     href: "/forms",
+  },
+  {
+    title: "Эмчилгээ бүртгэх",
+    icon: "layout",
+    href: "/inspection",
   },
   {
     title: "Alerts",
