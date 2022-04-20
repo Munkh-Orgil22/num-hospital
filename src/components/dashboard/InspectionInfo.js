@@ -26,7 +26,6 @@ import {
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 import FeatherIcon from "feather-icons-react";
-// import dailog from "../dialog"
 
 const inspections = [
     {

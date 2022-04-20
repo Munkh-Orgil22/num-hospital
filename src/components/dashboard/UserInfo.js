@@ -20,11 +20,12 @@ import {
   FormLabel,
   FormControl,
   Fab,
-  TableContainer
+  TableContainer,
 
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 import FeatherIcon from "feather-icons-react";
+import { useRouter } from 'next/router'
 // import dailog from "../dialog"
 
 const users = [
@@ -76,9 +77,23 @@ const users = [
 
 const UserInfo = () => {
   const [open, setopen] = useState(false);
+  const router = useRouter();
+  const url = router.asPath;
+  const [allergies, setallergies] = useState("");
+  const [date, setDate] = useState("");
 
   const handleOnClick = () => {
     setopen(!open);
+  }
+
+  const handleChange = (e) => {
+    setallergies(e.target.value);
+  };
+
+
+  const handlePush = () => {
+    console.log(url);
+    router.push(url);
   }
   return (
 

@@ -35,19 +35,18 @@ const inspection = () => {
         setOpen(!open);
     }
     const fetchData = async (registry) => {
-        const response = await axios('http://localhost:8081/user-service/api/user/' +registry);
-       setUserId(response.data.userid)
+        const response = await axios('http://localhost:8081/user-service/api/user/' + registry);
+        setUserId(response.data.userid)
     }
     const handlePush = async () => {
-        
+
         // http://localhost:8081/user-service/api/user/
         await fetchData(registry);
-       if(userId > 0)
-       {
-          router.push("/inspection?user=" + userId);
-       }
+        if (userId > 0) {
+            router.push("/inspection?user=" + userId);
+        }
     }
-    
+
 
     return (
         <Container>
