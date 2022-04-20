@@ -123,7 +123,7 @@ const Forms = () => {
           </Stack>
           <br />
           <Button variant="contained" mt={2} onClick={handleOnClick}  >
-            Submit
+            Бүртгэх
           </Button>
           <Dialog open={open} onClose={handleOnClick}>
           <Alert  severity="success">
