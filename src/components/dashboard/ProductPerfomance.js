@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -8,50 +8,78 @@ import {
   TableHead,
   TableRow,
   Chip,
+  Button,
+  Dialog,
+  Grid,
+  Stack,
+  TextField,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  FormControl,
+
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
+// import dailog from "../dialog"
 
 const products = [
   {
     id: "1",
-    name: "Sunil Joshi",
-    post: "Web Designer",
-    pname: "Elite Admin",
-    priority: "Low",
-    pbg: "primary.main",
-    budget: "3.9",
+    firstName: "Болд",
+    lastName: "Бат",
+    requestry: "ФБ00320812",
+    allergies: "Тийм",
+    address: "4",
+    education: "Дээд",
+    profession: "Программ хангамж",
+    jobaddress: "Clinica"
   },
   {
     id: "2",
-    name: "Andrew McDownland",
-    post: "Project Manager",
-    pname: "Real Homes WP Theme",
-    priority: "Medium",
-    pbg: "secondary.main",
-    budget: "24.5",
+    firstName: "Болд",
+    lastName: "Бат",
+    requestry: "ФБ00320812",
+    allergies: "Тийм",
+    address: "4",
+    education: "Дээд",
+    profession: "Программ хангамж",
+    jobaddress: "Clinica"
   },
   {
     id: "3",
-    name: "Christopher Jamil",
-    post: "Project Manager",
-    pname: "MedicalPro WP Theme",
-    priority: "High",
-    pbg: "error.main",
-    budget: "12.8",
+    firstName: "Болд",
+    lastName: "Бат",
+    requestry: "ФБ00320812",
+    allergies: "Тийм",
+    address: "4",
+    education: "Дээд",
+    profession: "Программ хангамж",
+    jobaddress: "Clinica"
   },
   {
     id: "4",
-    name: "Nirav Joshi",
-    post: "Frontend Engineer",
-    pname: "Hosting Press HTML",
-    priority: "Critical",
-    pbg: "success.main",
-    budget: "2.4",
+    firstName: "Болд",
+    lastName: "Бат",
+    requestry: "ФБ00320812",
+    allergies: "Тийм",
+    address: "4",
+    education: "Дээд",
+    profession: "Программ хангамж",
+    jobaddress: "Clinica"
   },
 ];
 
 const ProductPerfomance = () => {
+  const [open, setopen] = useState(false);
+
+  const handleOnClick = () => {
+    setopen(!open);
+  }
   return (
+
     <BaseCard title="Product Perfomance">
       <Table
         aria-label="simple table"
@@ -69,29 +97,56 @@ const ProductPerfomance = () => {
             </TableCell>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Assigned
+                Овог
               </Typography>
             </TableCell>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Name
+                Нэр
               </Typography>
             </TableCell>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Priority
+                Регистрийн дугаар
               </Typography>
             </TableCell>
-            <TableCell align="right">
+            <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Budget
+                Харшилтай эсэх
               </Typography>
             </TableCell>
+            <TableCell>
+              <Typography color="textSecondary" variant="h6">
+                Хаяг
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography color="textSecondary" variant="h6">
+                Боловсрол
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography color="textSecondary" variant="h6">
+                Хөтөлбөр
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography color="textSecondary" variant="h6">
+                Ажлын газрын хаяг
+              </Typography>
+            </TableCell>
+            {/* <TableCell align="right">
+              <Typography color="textSecondary" variant="h6">
+                Харшилтай эсэх
+              </Typography>
+            </TableCell> */}
+
           </TableRow>
         </TableHead>
         <TableBody>
           {products.map((product) => (
-            <TableRow key={product.name}>
+            // console.log(product.firstName),
+            <TableRow key={product.firstName}>
               <TableCell>
                 <Typography
                   sx={{
@@ -112,29 +167,59 @@ const ProductPerfomance = () => {
                   <Box>
                     <Typography
                       variant="h6"
-                      sx={{
-                        fontWeight: "600",
-                      }}
+                    // sx={{
+                    //   fontWeight: "600",
+                    // }}
                     >
-                      {product.name}
+                      {product.firstName}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                       color="textSecondary"
                       sx={{
                         fontSize: "13px",
                       }}
                     >
                       {product.post}
-                    </Typography>
+                    </Typography> */}
                   </Box>
                 </Box>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.pname}
+                  {product.lastName}
                 </Typography>
               </TableCell>
               <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.requestry}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.allergies}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.address}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.education}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.profession}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography color="textSecondary" variant="h6">
+                  {product.jobaddress}
+                </Typography>
+              </TableCell>
+              {/* <TableCell>
                 <Chip
                   sx={{
                     pl: "4px",
@@ -145,16 +230,120 @@ const ProductPerfomance = () => {
                   size="small"
                   label={product.priority}
                 ></Chip>
-              </TableCell>
-              <TableCell align="right">
+              </TableCell> */}
+              {/* <TableCell>
                 <Typography variant="h6">${product.budget}k</Typography>
+              </TableCell> */}
+              <TableCell>
+                <Button variant="outlined" onClick={handleOnClick}>
+                  Edit
+                </Button>
+                <Dialog open={open} onClick={handleOnClick} >
+                  <Grid container spacing={0}>
+                    <Grid item xs={12} lg={12}>
+                      <BaseCard title="Form Layout">
+                        <Stack spacing={3}>
+                          <TextField
+                            id="name-basic"
+                            label="Name"
+                            variant="outlined"
+                            defaultValue="Nirav Joshi"
+                          />
+                          <TextField id="email-basic" label="Email" variant="outlined" />
+                          <TextField
+                            id="pass-basic"
+                            label="Password"
+                            type="password"
+                            variant="outlined"
+                          />
+                          <TextField
+                            id="outlined-multiline-static"
+                            label="Text Area"
+                            multiline
+                            rows={4}
+                            defaultValue="Default Value"
+                          />
+                          <TextField
+                            error
+                            id="er-basic"
+                            label="Error"
+                            defaultValue="ad1avi"
+                            variant="outlined"
+                          />
+                          <FormGroup>
+                            <FormControlLabel
+                              control={<Checkbox defaultChecked />}
+                              label="Terms & Condition"
+                            />
+                            <FormControlLabel
+                              disabled
+                              control={<Checkbox />}
+                              label="Disabled"
+                            />
+                          </FormGroup>
+                          <FormControl>
+                            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+                            <RadioGroup
+                              aria-labelledby="demo-radio-buttons-group-label"
+                              defaultValue="female"
+                              name="radio-buttons-group"
+                            >
+                              <FormControlLabel
+                                value="female"
+                                control={<Radio />}
+                                label="Female"
+                              />
+                              <FormControlLabel
+                                value="male"
+                                control={<Radio />}
+                                label="Male"
+                              />
+                              <FormControlLabel
+                                value="other"
+                                control={<Radio />}
+                                label="Other"
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                        </Stack>
+                        <br />
+                        <Button variant="contained" mt={2}>
+                          Submit
+                        </Button>
+                      </BaseCard>
+                    </Grid>
+
+                    <Grid item xs={12} lg={12}>
+                      <BaseCard title="Form Design Type">
+                        <Stack spacing={3} direction="row">
+                          <TextField
+                            id="outlined-basic"
+                            label="Outlined"
+                            variant="outlined"
+                          />
+                          <TextField id="filled-basic" label="Filled" variant="filled" />
+                          <TextField
+                            id="standard-basic"
+                            label="Standard"
+                            variant="standard"
+                          />
+                        </Stack>
+                      </BaseCard>
+                    </Grid>
+                  </Grid>
+                </Dialog>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
+
       </Table>
     </BaseCard>
   );
 };
 
+
+
 export default ProductPerfomance;
+
+
