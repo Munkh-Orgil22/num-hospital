@@ -92,7 +92,7 @@ const inspectionsInfo = () => {
     return (
 
         <BaseCard title="Үзлэгийн мэдээлэл">
-            <TableContainer style={{ width: 1200 }}>
+            <TableContainer style={{ width: '100%' }}>
                 <Table
                     aria-label="simple table"
                     sx={{
