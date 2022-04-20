@@ -108,47 +108,47 @@ const UserInfo = () => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Дугаар
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Овог
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Нэр
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Регистрийн дугаар
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Харшилтай эсэх
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Хаяг
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Боловсрол
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Хөтөлбөр
                 </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Typography color="textSecondary" variant="h6">
                   Ажлын газрын хаяг
                 </Typography>
@@ -165,7 +165,7 @@ const UserInfo = () => {
             {users.map((user) => (
               // console.log(user.firstName),
               <TableRow key={user.id}>
-                <TableCell>
+                <TableCell align="center">
                   <Typography
                     sx={{
                       fontSize: "15px",
@@ -202,37 +202,37 @@ const UserInfo = () => {
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.lastName}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.requestry}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.allergies}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.address}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.education}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.profession}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
                     {user.jobaddress}
                   </Typography>

@@ -10,7 +10,7 @@ const Tables = () => {
   const router = useRouter();
 
 
-  const [registry, setRegistry] = useState(0);
+  const [registry, setRegistry] = useState("");
   const handlePush = () => {
     router.push("/news?userRegister=" + registry);
   }
