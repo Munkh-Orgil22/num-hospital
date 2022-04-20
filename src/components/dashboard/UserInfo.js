@@ -20,12 +20,14 @@ import {
   Radio,
   FormLabel,
   FormControl,
+  Fab
 
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
+import FeatherIcon from "feather-icons-react";
 // import dailog from "../dialog"
 
-const products = [
+const users = [
   {
     id: "1",
     firstName: "Болд",
@@ -72,7 +74,7 @@ const products = [
   },
 ];
 
-const ProductPerfomance = () => {
+const UserInfo = () => {
   const [open, setopen] = useState(false);
 
   const handleOnClick = () => {
@@ -80,7 +82,7 @@ const ProductPerfomance = () => {
   }
   return (
 
-    <BaseCard title="Product Perfomance">
+    <BaseCard title="Хэрэглэгчийн мэдээлэл">
       <Table
         aria-label="simple table"
         sx={{
@@ -92,7 +94,7 @@ const ProductPerfomance = () => {
           <TableRow>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Id
+                Дугаар
               </Typography>
             </TableCell>
             <TableCell>
@@ -144,9 +146,9 @@ const ProductPerfomance = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            // console.log(product.firstName),
-            <TableRow key={product.firstName}>
+          {users.map((user) => (
+            // console.log(user.firstName),
+            <TableRow key={user.id}>
               <TableCell>
                 <Typography
                   sx={{
@@ -154,7 +156,7 @@ const ProductPerfomance = () => {
                     fontWeight: "500",
                   }}
                 >
-                  {product.id}
+                  {user.id}
                 </Typography>
               </TableCell>
               <TableCell>
@@ -171,7 +173,7 @@ const ProductPerfomance = () => {
                     //   fontWeight: "600",
                     // }}
                     >
-                      {product.firstName}
+                      {user.firstName}
                     </Typography>
                     {/* <Typography
                       color="textSecondary"
@@ -179,44 +181,44 @@ const ProductPerfomance = () => {
                         fontSize: "13px",
                       }}
                     >
-                      {product.post}
+                      {user.post}
                     </Typography> */}
                   </Box>
                 </Box>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.lastName}
+                  {user.lastName}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.requestry}
+                  {user.requestry}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.allergies}
+                  {user.allergies}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.address}
+                  {user.address}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.education}
+                  {user.education}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.profession}
+                  {user.profession}
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.jobaddress}
+                  {user.jobaddress}
                 </Typography>
               </TableCell>
               {/* <TableCell>
@@ -224,20 +226,23 @@ const ProductPerfomance = () => {
                   sx={{
                     pl: "4px",
                     pr: "4px",
-                    backgroundColor: product.pbg,
+                    backgroundColor: user.pbg,
                     color: "#fff",
                   }}
                   size="small"
-                  label={product.priority}
+                  label={user.priority}
                 ></Chip>
               </TableCell> */}
               {/* <TableCell>
-                <Typography variant="h6">${product.budget}k</Typography>
+                <Typography variant="h6">${user.budget}k</Typography>
               </TableCell> */}
               <TableCell>
-                <Button variant="outlined" onClick={handleOnClick}>
+                {/* <Button variant="outlined" onClick={handleOnClick}>
                   Edit
-                </Button>
+                </Button> */}
+                <Fab aria-label="add" color="primary" onClick={handleOnClick}>
+                  <FeatherIcon icon="edit" width="20" height="20" />
+                </Fab>
                 <Dialog open={open} onClick={handleOnClick} >
                   <Grid container spacing={0}>
                     <Grid item xs={12} lg={12}>
@@ -344,6 +349,6 @@ const ProductPerfomance = () => {
 
 
 
-export default ProductPerfomance;
+export default UserInfo;
 
 
