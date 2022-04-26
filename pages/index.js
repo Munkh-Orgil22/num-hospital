@@ -3,9 +3,11 @@ import { Grid } from "@mui/material";
 import SalesOverview from "../src/components/dashboard/SalseOverview";
 import DailyActivity from "../src/components/dashboard/DailyActivity";
 import UserInfo from "../src/components/dashboard/UserInfo";
+import FullLayout from "../src/layouts/FullLayout";
 
 export default function Index() {
   return (
+    <FullLayout>
     <Grid container spacing={0}>
       <Grid item xs={12} lg={12}>
         <SalesOverview />
@@ -21,5 +23,6 @@ export default function Index() {
         {/* <BlogCard /> */}
       </Grid>
     </Grid>
+    </FullLayout>
   );
 }

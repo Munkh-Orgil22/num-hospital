@@ -13,9 +13,9 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import React, { useState, useEffect } from "react";
 import BaseCard from "../src/components/baseCard/BaseCard";
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import FullLayout from "../src/layouts/FullLayout";
 import axios from 'axios';
 
 const inspection = () => {
@@ -49,6 +49,7 @@ const inspection = () => {
 
 
     return (
+        <FullLayout>
         <Container>
             {url == "/inspection?user=" + userId ?
                 <Grid container spacing={0}>
@@ -120,6 +121,7 @@ const inspection = () => {
 
             }
         </Container>
+        </FullLayout>
 
 
     );

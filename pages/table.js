@@ -3,12 +3,9 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from "react";
 import { useRouter } from 'next/router';
-
+import FullLayout from "../src/layouts/FullLayout";
 const Tables = () => {
-
-
   const router = useRouter();
-
 
   const [registry, setRegistry] = useState("");
   const handlePush = () => {
@@ -17,6 +14,7 @@ const Tables = () => {
 
 
   return (
+    <FullLayout>
     <Grid container spacing={0}>
       <Grid item xs={12} lg={12}>
         <BaseCard title="Регистрийн дугаараа оруулнуу">
@@ -40,6 +38,7 @@ const Tables = () => {
 
       </Grid>
     </Grid>
+    </FullLayout>
   );
 };
 

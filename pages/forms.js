@@ -12,6 +12,7 @@ import {
 
 
 import React, { useState, useEffect } from "react";
+import FullLayout from "../src/layouts/FullLayout";
 import BaseCard from "../src/components/baseCard/BaseCard";
 
 const Forms = () => {
@@ -29,6 +30,7 @@ const Forms = () => {
 
 
   return (
+    <FullLayout>
     <Grid container spacing={0}>
       <Grid item xs={12} lg={12}>
         <BaseCard title="Хэрэглэгч бүртгэх хэсэг">
@@ -151,6 +153,7 @@ const Forms = () => {
         </BaseCard>
       </Grid> */}
     </Grid>
+    </FullLayout>
   );
 };
 

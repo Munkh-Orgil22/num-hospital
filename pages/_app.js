@@ -17,14 +17,14 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Flexy NextJs Starter kit page</title>
+        <title>Num hospital</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <FullLayout>
+        {/* <FullLayout> */}
           <Component {...pageProps} />
-        </FullLayout>
+        {/* </FullLayout> */}
       </ThemeProvider>
     </CacheProvider>
   );

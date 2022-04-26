@@ -1,7 +1,7 @@
 import React from "react";
 import FeatherIcon from "feather-icons-react";
 import Image from "next/image";
-import userimg from "../../../assets/images/users/user2.jpg";
+import userimg from "../../../assets/images/users/2.jpg";
 import {
   Box,
   Menu,
@@ -55,7 +55,7 @@ const ProfileDD = () => {
               fontWeight="400"
               sx={{ ml: 1 }}
             >
-              Hi,
+              Сайн байнуу,
             </Typography>
             <Typography
               variant="h5"
@@ -64,7 +64,7 @@ const ProfileDD = () => {
                 ml: 1,
               }}
             >
-              Julia
+              Эмчээ
             </Typography>
             <FeatherIcon icon="chevron-down" width="20" height="20" />
           </Box>
