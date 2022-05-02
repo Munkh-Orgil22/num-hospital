@@ -7,7 +7,9 @@ import {
     Alert,
     Container,
     InputLabel,
-    MenuItem
+    MenuItem,
+    AlertTitle,
+    InputAdornment
 } from "@mui/material";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -17,59 +19,129 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import FullLayout from "../src/layouts/FullLayout";	
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const inspection = () => {
     const router = useRouter();
-    const url = router.asPath;
-    const [isdisease, am13, allergies, setallergies] = useState("");
+
+    const [inspectiontype, setInspectiontype] = useState("");
+    const [diagnosis , setDiagnosis] = useState("");
+    const [reason, setReason] = useState("");
+    // suuri owchdei eseh
+    const [isdisease, setIsdisease] = useState("");
+    // 13 maygt 
+    const [ isam13, setIsam13] = useState("");
+    const [treatment, setTreatment] = useState("");
+    // saajiltai eseh 
+    const [paralyzed, setParalyzed] = useState("");
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState("");
-    const [registry, setRegistry] = useState("");
-    const [userId, setUserId] = useState(parseInt(url.substring(17)));
+    const {userid, vitalsignid} = router.query;
+
+    const [isnext , setIsnext] = useState(false);
+
 
     const handleChange = (e) => {
         setallergies(e.target.value);
     };
-
-    const handleOnClick = () => {
+    const handleOnCloseDialgo =()=>{
         setOpen(!open);
     }
+
+    
+
+    const handleOnClick = async () => {
+        const data = {
+            "inspectionid": null,
+            "userid": parseInt(userid),
+            "vitalsignid": parseInt(vitalsignid),
+            "inspectiontype": inspectiontype,
+            "diagnosis": diagnosis,
+            "reason": reason,
+            "isdisease": isdisease,
+            "isAm13": isam13,
+            "treatment": treatment,
+            "isparalyzed": paralyzed,
+            "createdate" : date
+        }
+
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' ,
+            'Authorization': 'Bearer ' + localStorage.getItem("access_token")},
+            data: data,
+            url : "http://localhost:8080/doctor-service/api/inspection/saveInspection"
+        };
+        const response = await axios(options);
+        
+        if(response.status == 200)
+        {
+            setOpen(!open);
+        }
+        
+    }
     const fetchData = async (registry) => {
-        const response = await axios('http://localhost:8081/user-service/api/user/' + registry);
+        const response = await axios('http://localhost:8080/user-service/api/user/' + registry);
         setUserId(response.data.userid)
     }
-    // const handlePush = async () => {
+    const handlePush = async () => {
 
-    //     // http://localhost:8081/user-service/api/user/
-    //     await fetchData(registry);
-    //     if (userId > 0) {
-    //         router.push("/inspection?user=" + userId);
-    //     }
-    // }
+        setIsnext(true);
+        // http://localhost:8081/user-service/api/user/
+        // await fetchData(registry);
+        // if (userId > 0) {
+        //     router.push("/inspection?user=" + userId);
+        // }
+    }
 
 
     return (
         <FullLayout>
         <Container>
             {/* {url == "/inspection?user=" + userId ? */}
-            <Grid container spacing={0}>
+            
+            {/* <BaseCard title="Регистрийн дугаараа оруулнуу">
+                    <TextField
+                        id="input-with-icon-textfield"
+                        label="Регистрийн дугаар"
+                        value={registry}
+                        onChange={(e) => setRegistry(e.target.value)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="start">
+                                    <Button onClick={handlePush}>
+                                        <SearchIcon />
+                                    </Button>
+                                </InputAdornment>
+                            ),
+                        }}
+                        variant="standard"
+                    />
+                </BaseCard> */}
+               <Grid container spacing={0}>
                 <Grid item xs={12} lg={12}>
-                    <BaseCard title={`Үзлэг бүртгэх хэсэг ${userId}`}>
+                    <BaseCard title={`Үзлэг бүртгэх хэсэг`}>
                         <Stack spacing={3}>
 
                             <TextField
                                 id="name-basic"
                                 label="Үзлэгийн төрөл"
                                 variant="outlined"
+                                onChange={(e)=>setInspectiontype(e.target.value)}
                             />
                             <TextField
                                 id="name-basic"
                                 label="Онош"
                                 variant="outlined"
+                                onChange={(e)=>setDiagnosis(e.target.value)}
                             />
 
-                            <TextField id="email-basic" label="Шалтгаан" variant="outlined" />
+                            <TextField id="name-basic" label="Шалтгаан"
+                             variant="outlined" 
+                             onChange={(e)=>setReason(e.target.value)}
+                             />
                             <InputLabel id="demo-simple-select-label">Суурь өвчтэй эсэх</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -77,7 +149,7 @@ const inspection = () => {
                                 value={isdisease}
                                 label="Харшил"
                                 variant="outlined"
-                                onChange={handleChange}
+                                onChange={(e)=>setIsdisease(e.target.value)}
                             >
                                 <MenuItem value={1}>Тийм</MenuItem>
                                 <MenuItem value={0}>Үгүй</MenuItem>
@@ -86,29 +158,26 @@ const inspection = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={am13}
+                                value={isam13}
                                 label="Харшил"
                                 variant="outlined"
-                                onChange={handleChange}
+                                onChange={(e)=>setIsam13(e.target.value)}
                             >
                                 <MenuItem value={1}>Тийм</MenuItem>
                                 <MenuItem value={0}>Үгүй</MenuItem>
                             </Select>
-                            {/* <TextField
-                                id="outlined-multiline-static"
-                                label="Шалтгаан"
-                                multiline
-                                rows={4}
-                            /> */}
-                            <TextField id="email-basic" label="Эмчилгээ" variant="outlined" />
+                            <TextField id="name-basic" label="Эмчилгээ" 
+                            variant="outlined" 
+                            onChange={(e)=>setTreatment(e.target.value)}
+                            />
                             <InputLabel id="demo-simple-select-label">Саажилттай эсэх</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={allergies}
+                                value={paralyzed}
                                 label="Харшил"
                                 variant="outlined"
-                                onChange={handleChange}
+                                onChange={(e)=>setParalyzed(e.target.value)}
                             >
                                 <MenuItem value={1}>Тийм</MenuItem>
                                 <MenuItem value={0}>Үгүй</MenuItem>
@@ -128,7 +197,7 @@ const inspection = () => {
                             <Button variant="contained" mt={2} onClick={handleOnClick}  >
                                 Бүртгэх
                             </Button>
-                            <Dialog open={open} onClose={handleOnClick}>
+                            <Dialog open={open} onClose={handleOnCloseDialgo}>
                                 <Alert severity="success">
                                     Амжилтай хадгаллаа
                                 </Alert>
@@ -137,6 +206,7 @@ const inspection = () => {
                     </BaseCard>
                 </Grid>
             </Grid>
+
             {/* :
                 <BaseCard title="Регистрийн дугаараа оруулнуу">
                     <TextField

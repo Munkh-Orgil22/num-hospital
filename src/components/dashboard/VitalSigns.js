@@ -26,49 +26,77 @@ import {
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 import FeatherIcon from "feather-icons-react";
+import axios from 'axios';
+
 // import dailog from "../dialog"
 
-const vitalsigns = [
-    {
-        vitalsignid: "13",
-        userid: "9",
-        arterialbloodpressure: "lfdkfl",
-        head: "98",
-        bloodoxysupply: "110",
-        numberofbreaths: "160",
-        createdate: "2022-04-06",
-    },
-    {
-        vitalsignid: "13",
-        userid: "9",
-        arterialbloodpressure: "lfdkfl",
-        head: "98",
-        bloodoxysupply: "110",
-        numberofbreaths: "160",
-        createdate: "2022-04-06",
-    },
-    {
-        vitalsignid: "13",
-        userid: "9",
-        arterialbloodpressure: "lfdkfl",
-        head: "98",
-        bloodoxysupply: "110",
-        numberofbreaths: "160",
-        createdate: "2022-04-06",
-    },
-    {
-        vitalsignid: "13",
-        userid: "9",
-        arterialbloodpressure: "lfdkfl",
-        head: "98",
-        bloodoxysupply: "110",
-        numberofbreaths: "160",
-        createdate: "2022-04-06",
-    },
-];
+// const vitalsigns = [
+//     {
+//         vitalsignid: "13",
+//         userid: "9",
+//         arterialbloodpressure: "lfdkfl",
+//         head: "98",
+//         bloodoxysupply: "110",
+//         numberofbreaths: "160",
+//         createdate: "2022-04-06",
+//     },
+//     {
+//         vitalsignid: "13",
+//         userid: "9",
+//         arterialbloodpressure: "lfdkfl",
+//         head: "98",
+//         bloodoxysupply: "110",
+//         numberofbreaths: "160",
+//         createdate: "2022-04-06",
+//     },
+//     {
+//         vitalsignid: "13",
+//         userid: "9",
+//         arterialbloodpressure: "lfdkfl",
+//         head: "98",
+//         bloodoxysupply: "110",
+//         numberofbreaths: "160",
+//         createdate: "2022-04-06",
+//     },
+//     {
+//         vitalsignid: "13",
+//         userid: "9",
+//         arterialbloodpressure: "lfdkfl",
+//         head: "98",
+//         bloodoxysupply: "110",
+//         numberofbreaths: "160",
+//         createdate: "2022-04-06",
+//     },
+// ];
 
-const VitalSigns = () => {
+const VitalSigns = (props) => {
     const [open, setopen] = useState(false);
+    const [vitalsigns , setVitalsigns] = useState([]);
+
+    useEffect(async () =>{
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+            },
+            url: "http://localhost:8080/doctor-service/api/vitalsigns/" + props.userid
+        };
+        try {
+            const res = await axios(options);
+            console.log(res.status);
+            if (res.status ==200 && res.data.code == 200) {
+            //    console.log(res.data.data);
+               setVitalsigns(res.data.data)
+            }
+            else {
+                
+            }
+        } catch (e) {
+    console.log(e);
+        }
+    },[]);
 
     const handleOnClick = () => {
         setopen(!open);
@@ -131,6 +159,7 @@ const VitalSigns = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {console.log(vitalsigns)}
                         {vitalsigns.map((vitalsign) => (
                             // console.log(vitalsign.firstName),
                             <TableRow key={vitalsign.vitalsignid}>

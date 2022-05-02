@@ -28,54 +28,55 @@ import FeatherIcon from "feather-icons-react";
 import { useRouter } from 'next/router'
 // import dailog from "../dialog"
 
-const users = [
-  {
-    id: "1",
-    firstName: "Болд",
-    lastName: "Бат",
-    requestry: "ФБ00320812",
-    allergies: "Тийм",
-    address: "4",
-    education: "Дээд",
-    profession: "Программ хангамж",
-    jobaddress: "Clinica"
-  },
-  {
-    id: "2",
-    firstName: "Болд",
-    lastName: "Бат",
-    requestry: "ФБ00320812",
-    allergies: "Тийм",
-    address: "4",
-    education: "Дээд",
-    profession: "Программ хангамж",
-    jobaddress: "Clinica"
-  },
-  {
-    id: "3",
-    firstName: "Болд",
-    lastName: "Бат",
-    requestry: "ФБ00320812",
-    allergies: "Тийм",
-    address: "4",
-    education: "Дээд",
-    profession: "Программ хангамж",
-    jobaddress: "Clinica"
-  },
-  {
-    id: "4",
-    firstName: "Болд",
-    lastName: "Бат",
-    requestry: "ФБ00320812",
-    allergies: "Тийм",
-    address: "4",
-    education: "Дээд",
-    profession: "Программ хангамж",
-    jobaddress: "Clinica"
-  },
-];
+// const users = [
+//   {
+//     id: "1",
+//     firstName: "Болд",
+//     lastName: "Бат",
+//     requestry: "ФБ00320812",
+//     allergies: "Тийм",
+//     address: "4",
+//     education: "Дээд",
+//     profession: "Программ хангамж",
+//     jobaddress: "Clinica"
+//   },
+//   {
+//     id: "2",
+//     firstName: "Болд",
+//     lastName: "Бат",
+//     requestry: "ФБ00320812",
+//     allergies: "Тийм",
+//     address: "4",
+//     education: "Дээд",
+//     profession: "Программ хангамж",
+//     jobaddress: "Clinica"
+//   },
+//   {
+//     id: "3",
+//     firstName: "Болд",
+//     lastName: "Бат",
+//     requestry: "ФБ00320812",
+//     allergies: "Тийм",
+//     address: "4",
+//     education: "Дээд",
+//     profession: "Программ хангамж",
+//     jobaddress: "Clinica"
+//   },
+//   {
+//     id: "4",
+//     firstName: "Болд",
+//     lastName: "Бат",
+//     requestry: "ФБ00320812",
+//     allergies: "Тийм",
+//     address: "4",
+//     education: "Дээд",
+//     profession: "Программ хангамж",
+//     jobaddress: "Clinica"
+//   },
+// ];
 
-const UserInfo = () => {
+const UserInfo = (props) => {
+  console.log(props.data);
   const [open, setopen] = useState(false);
   const router = useRouter();
   const url = router.asPath;
@@ -162,9 +163,9 @@ const UserInfo = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
-              // console.log(user.firstName),
-              <TableRow key={user.id}>
+            {/* {users.map((user) => ( */}
+              {/* // console.log(user.firstName), */}
+              <TableRow >
                 <TableCell align="center">
                   <Typography
                     sx={{
@@ -172,7 +173,7 @@ const UserInfo = () => {
                       fontWeight: "500",
                     }}
                   >
-                    {user.id}
+                    {props.data.userId}
                   </Typography>
                 </TableCell>
                 <TableCell>
@@ -189,7 +190,7 @@ const UserInfo = () => {
                       //   fontWeight: "600",
                       // }}
                       >
-                        {user.firstName}
+                        {props.data.firstName}
                       </Typography>
                       {/* <Typography
                       color="textSecondary"
@@ -204,37 +205,37 @@ const UserInfo = () => {
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.lastName}
+                    {props.data.lastName}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.requestry}
+                    {props.data.requestry}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.allergies}
+                    {props.data.allergies}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.address}
+                    {props.data.address}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.education}
+                    {props.data.education}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.profession}
+                    {props.data.profession}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography color="textSecondary" variant="h6">
-                    {user.jobaddress}
+                    {props.data.jobAddress}
                   </Typography>
                 </TableCell>
                 {/* <TableCell>
@@ -256,7 +257,7 @@ const UserInfo = () => {
                   {/* <Button variant="outlined" onClick={handleOnClick}>
                   Edit
                 </Button> */}
-                  <Fab aria-label="add" color="primary" onClick={handleOnClick}>
+                  {/* <Fab aria-label="add" color="primary" onClick={handleOnClick}>
                     <FeatherIcon icon="edit" width="20" height="20" />
                   </Fab>
                   <Dialog open={open} onClick={handleOnClick} >
@@ -352,10 +353,10 @@ const UserInfo = () => {
                         </BaseCard>
                       </Grid>
                     </Grid>
-                  </Dialog>
+                  </Dialog> */}
                 </TableCell>
               </TableRow>
-            ))}
+            {/* ))} */}
           </TableBody>
 
         </Table>

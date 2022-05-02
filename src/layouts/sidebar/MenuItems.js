@@ -11,14 +11,14 @@ const Menuitems = [
   // },
   {
     title: "Хэрэглэгч бүртгэх",
-    icon: "layout",
+    icon: "user",
     href: "/forms",
   },
-  {
-    title: "Үзлэг",
-    icon: "layout",
-    href: "/inspection",
-  },
+  // {
+  //   title: "Үзлэг",
+  //   icon: "layout",
+  //   href: "/inspection",
+  // },
   {
     title: "Амин үзүүлэлт",
     icon: "layout",

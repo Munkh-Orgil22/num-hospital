@@ -26,65 +26,90 @@ import {
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 import FeatherIcon from "feather-icons-react";
+import axios from 'axios';
 
-const inspections = [
-    {
-        inspectionid: "13",
-        userid: "9",
-        vitalsigns: "-394538",
-        inspectiontype: "98",
-        diagnosis: "110",
-        reason: "160",
-        isdisease: "2022-04-06",
-        isAm13: 0,
-        treatment: "ttt",
-        isparalyzed: "false"
 
-    },
-    {
-        inspectionid: "13",
-        userid: "9",
-        vitalsigns: "null",
-        inspectiontype: "98",
-        diagnosis: "110",
-        reason: "160",
-        isdisease: "2022-04-06",
-        isAm13: 0,
-        treatment: "ttt",
-        isparalyzed: "false"
+// const inspections = [
+//     {
+//         inspectionid: "13",
+//         userid: "9",
+//         vitalsigns: "-394538",
+//         inspectiontype: "98",
+//         diagnosis: "110",
+//         reason: "160",
+//         isdisease: "2022-04-06",
+//         isAm13: 0,
+//         treatment: "ttt",
+//         isparalyzed: "false"
 
-    },
-    {
-        inspectionid: "13",
-        userid: "9",
-        vitalsigns: "null",
-        inspectiontype: "98",
-        diagnosis: "110",
-        reason: "160",
-        isdisease: "2022-04-06",
-        isAm13: 0,
-        treatment: "ttt",
-        isparalyzed: "false"
+//     },
+//     {
+//         inspectionid: "13",
+//         userid: "9",
+//         vitalsigns: "null",
+//         inspectiontype: "98",
+//         diagnosis: "110",
+//         reason: "160",
+//         isdisease: "2022-04-06",
+//         isAm13: 0,
+//         treatment: "ttt",
+//         isparalyzed: "false"
 
-    },
-    {
-        inspectionid: "13",
-        userid: "9",
-        vitalsigns: "null",
-        inspectiontype: "98",
-        diagnosis: "110",
-        reason: "160",
-        isdisease: "2022-04-06",
-        isAm13: 0,
-        treatment: "ttt",
-        isparalyzed: "false"
+//     },
+//     {
+//         inspectionid: "13",
+//         userid: "9",
+//         vitalsigns: "null",
+//         inspectiontype: "98",
+//         diagnosis: "110",
+//         reason: "160",
+//         isdisease: "2022-04-06",
+//         isAm13: 0,
+//         treatment: "ttt",
+//         isparalyzed: "false"
 
-    },
-];
+//     },
+//     {
+//         inspectionid: "13",
+//         userid: "9",
+//         vitalsigns: "null",
+//         inspectiontype: "98",
+//         diagnosis: "110",
+//         reason: "160",
+//         isdisease: "2022-04-06",
+//         isAm13: 0,
+//         treatment: "ttt",
+//         isparalyzed: "false"
 
-const inspectionsInfo = () => {
+//     },
+// ];
+
+const inspectionsInfo = (props) => {
     const [open, setopen] = useState(false);
+    const [inspections, setInspections] = useState([]);
+    useEffect(async () =>{
 
+        const options = {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+            },
+            url: "http://localhost:8080/doctor-service/api/Inspection/" + props.userid
+        };
+        try {
+            const res = await axios(options);
+            console.log(res.status);
+            if (res.status ==200 && res.data.code == 200) {
+            setInspections(res.data.data)
+            }
+            else {
+                
+            }
+        } catch (e) {
+    console.log(e);
+        }
+    },[]);
     const handleOnClick = () => {
         setopen(!open);
     }

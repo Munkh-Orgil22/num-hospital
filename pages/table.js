@@ -4,12 +4,46 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState } from "react";
 import { useRouter } from 'next/router';
 import FullLayout from "../src/layouts/FullLayout";
+import axios from 'axios';
+import UserInfo from "../src/components/dashboard/UserInfo";
+import VitalSigns from "../src/components/dashboard/VitalSigns"
+import InspectionInfo from "../src/components/dashboard/InspectionInfo"
+
 const Tables = () => {
   const router = useRouter();
-
+  const [isnext, setIsnext] = useState(false); 
   const [registry, setRegistry] = useState("");
-  const handlePush = () => {
-    router.push("/news?userRegister=" + registry);
+  const [user, setUser] = useState({});
+  const [userid , setUserid] = useState(0);
+  // const handlePush = () => {
+  //   router.push("/news?userRegister=" + registry);
+  // }
+  const handleOnNext = () => {
+    async function fetch()
+    {
+      const options = {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+        },
+        url: "http://localhost:8080/user-service/api/user/" + registry
+    };
+    try {
+        const res = await axios(options);
+        if (res.status ==200 && res.data.code == 200) {
+            setIsnext(!isnext);
+           setUserid(res.data.data.userId);
+           setUser(res.data.data);
+        }
+        else {
+            setOpen(!open);
+        }
+    } catch (e) {
+
+    }
+    }
+    fetch();
   }
 
 
@@ -26,7 +60,7 @@ const Tables = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <Button onClick={handlePush}>
+                  <Button onClick={handleOnNext}>
                     <SearchIcon />
                   </Button>
                 </InputAdornment>
@@ -37,6 +71,12 @@ const Tables = () => {
         </BaseCard>
 
       </Grid>
+      {isnext ? <Grid item xs={12} lg={12}>
+                <UserInfo data={user} />
+                <VitalSigns  userid={userid} />
+                <InspectionInfo userid={userid} />
+
+            </Grid> : ""}
     </Grid>
     </FullLayout>
   );

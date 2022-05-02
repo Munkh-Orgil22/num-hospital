@@ -53,18 +53,12 @@ const SalesOverview = () => {
     xaxis: {
       type: "category",
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "July",
-        "Aug",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec",
+        "ХШУИС",
+        "ХУС",
+        "НУС",
+        "БУС",
+        "БС",
+        "ОХНУС",
       ],
       labels: {
         style: {
@@ -95,16 +89,16 @@ const SalesOverview = () => {
   };
   const seriessalesoverview = [
     {
-      name: "Ample Admin",
-      data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
+      name: "Жилээр",
+      data: [355, 390, 400, 350, 390],
     },
     {
-      name: "Pixel Admin",
-      data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
+      name: "Сараар",
+      data: [280, 250, 325, 215, 250],
     },
   ];
   return (
-    <BaseCard title="Sales Overview">
+    <BaseCard title="Сар бүрийн статистик тайлан">
       <Chart
         options={optionssalesoverview}
         series={seriessalesoverview}
