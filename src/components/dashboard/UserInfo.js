@@ -76,7 +76,6 @@ import { useRouter } from 'next/router'
 // ];
 
 const UserInfo = (props) => {
-  console.log(props.data);
   const [open, setopen] = useState(false);
   const router = useRouter();
   const url = router.asPath;

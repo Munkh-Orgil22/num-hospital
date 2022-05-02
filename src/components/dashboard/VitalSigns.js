@@ -27,48 +27,6 @@ import {
 import BaseCard from "../baseCard/BaseCard";
 import FeatherIcon from "feather-icons-react";
 import axios from 'axios';
-
-// import dailog from "../dialog"
-
-// const vitalsigns = [
-//     {
-//         vitalsignid: "13",
-//         userid: "9",
-//         arterialbloodpressure: "lfdkfl",
-//         head: "98",
-//         bloodoxysupply: "110",
-//         numberofbreaths: "160",
-//         createdate: "2022-04-06",
-//     },
-//     {
-//         vitalsignid: "13",
-//         userid: "9",
-//         arterialbloodpressure: "lfdkfl",
-//         head: "98",
-//         bloodoxysupply: "110",
-//         numberofbreaths: "160",
-//         createdate: "2022-04-06",
-//     },
-//     {
-//         vitalsignid: "13",
-//         userid: "9",
-//         arterialbloodpressure: "lfdkfl",
-//         head: "98",
-//         bloodoxysupply: "110",
-//         numberofbreaths: "160",
-//         createdate: "2022-04-06",
-//     },
-//     {
-//         vitalsignid: "13",
-//         userid: "9",
-//         arterialbloodpressure: "lfdkfl",
-//         head: "98",
-//         bloodoxysupply: "110",
-//         numberofbreaths: "160",
-//         createdate: "2022-04-06",
-//     },
-// ];
-
 const VitalSigns = (props) => {
     const [open, setopen] = useState(false);
     const [vitalsigns , setVitalsigns] = useState([]);
@@ -85,7 +43,6 @@ const VitalSigns = (props) => {
         };
         try {
             const res = await axios(options);
-            console.log(res.status);
             if (res.status ==200 && res.data.code == 200) {
             //    console.log(res.data.data);
                setVitalsigns(res.data.data)
@@ -159,7 +116,7 @@ const VitalSigns = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {console.log(vitalsigns)}
+                        
                         {vitalsigns.map((vitalsign) => (
                             // console.log(vitalsign.firstName),
                             <TableRow key={vitalsign.vitalsignid}>

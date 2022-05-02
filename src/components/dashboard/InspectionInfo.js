@@ -99,7 +99,6 @@ const inspectionsInfo = (props) => {
         };
         try {
             const res = await axios(options);
-            console.log(res.status);
             if (res.status ==200 && res.data.code == 200) {
             setInspections(res.data.data)
             }

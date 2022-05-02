@@ -52,31 +52,31 @@ const inspection = () => {
 
     const handleOnClick = async () => {
           const data = {
-            "vitalsignid": null,
-            "userid": userId,
-            "arterialbloodpressure": arterialbloodpressure,
-            "head": parseInt(head),
-            "bloodoxysupply": bloodoxysupply,
-            "numberofbreaths": parseInt(numberofbreaths),
-            "createdate": "" + date
+            vitalsignid: 0,
+            userid: userId,
+            arterialbloodpressure: arterialbloodpressure,
+            head: parseInt(head),
+            bloodoxysupply: bloodoxysupply,
+            numberofbreaths: parseInt(numberofbreaths),
+            createdate: "" + date
           }
-
-        //   console.log(data);
-
           const options = {
             method: 'POST',
-            headers: { 'content-type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-        },
-        data: data,
-            url : "http://localhost:8080/doctor-service/api/vitalsigns/saveVitalsigns"
-        };
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+            },
+            data: data,
+            url: "http://localhost:8080/doctor-service/api/vitalsigns/saveVitalsigns"
+          };
+
         const res = await axios(options);
-        if(res.status)
+        // console.log(res.data);
+        if(res.status==200)
         {
             setVitalsignid(res.data.vitalsignid);
-        setOpen(!open);
-        setStatus(true);
+            setOpen(!open);
+            setStatus(true);
         }
         else {
             setOpen(!open);
@@ -97,7 +97,6 @@ const inspection = () => {
         };
         try {
             const res = await axios(options);
-            console.log(res.data.code);
             if (res.status && res.data.code == 200) {
                 setUserId(res.data.data.userId)
                 setIsnext(true);
