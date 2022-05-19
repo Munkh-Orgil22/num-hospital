@@ -1,6 +1,6 @@
 const Menuitems = [
   {
-    title: "Dashbaord",
+    title: "Хяналтын самбар",
     icon: "home",
     href: "/",
   },

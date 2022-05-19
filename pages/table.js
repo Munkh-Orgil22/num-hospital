@@ -14,7 +14,7 @@ const Tables = () => {
   const [isnext, setIsnext] = useState(false); 
   const [registry, setRegistry] = useState("");
   const [user, setUser] = useState({});
-  const [userid , setUserid] = useState(0);
+  const [userid , setUserid] = useState(null);
   // const handlePush = () => {
   //   router.push("/news?userRegister=" + registry);
   // }
@@ -30,7 +30,7 @@ const Tables = () => {
         url: "http://localhost:8080/user-service/api/user/" + registry
     };
     try {
-        const res = await axios(options);
+        let res = await axios(options);
         if (res.status ==200 && res.data.code == 200) {
             setIsnext(!isnext);
            setUserid(res.data.data.userId);
@@ -73,8 +73,11 @@ const Tables = () => {
       </Grid>
       {isnext ? <Grid item xs={12} lg={12}>
                 <UserInfo data={user} />
-                <VitalSigns  userid={userid} />
+                {userid != null &&
+                <div><VitalSigns  userid={userid} />
                 <InspectionInfo userid={userid} />
+                </div>
+                }
 
             </Grid> : ""}
     </Grid>
